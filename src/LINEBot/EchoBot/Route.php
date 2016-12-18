@@ -66,10 +66,14 @@ class Route
                     continue;
                 }
 
-                $replyText = $event->getText();
-                $logger->info('Reply text: ' . $replyText);
-                $resp = $bot->replyText($event->getReplyToken(), $replyText);
-                $logger->info($resp->getHTTPStatus() . ': ' . $resp->getRawBody());
+                $userId = $event->getUserId();
+
+                $bot->pushMessage($userId, new LINEBot\MessageBuilder\TextMessageBuilder('push'));
+
+//                $replyText = $event->getText();
+//                $logger->info('Reply text: ' . $replyText);
+//                $resp = $bot->replyText($event->getReplyToken(), $replyText);
+//                $logger->info($resp->getHTTPStatus() . ': ' . $resp->getRawBody());
             }
 
             $res->write('OK');
