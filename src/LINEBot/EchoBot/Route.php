@@ -32,6 +32,8 @@ class Route
     public function register(\Slim\App $app)
     {
         $app->post('/callback', function (\Slim\Http\Request $req, \Slim\Http\Response $res) {
+
+            $returnMsg="Default"
             /** @var \LINE\LINEBot $bot */
             $bot = $this->bot;
             /** @var \Monolog\Logger $logger */
@@ -66,9 +68,14 @@ class Route
                     continue;
                 }
 
+                /*beaconイベントをキャッチ*/
+                if('beacon' == $event->type){
+                    $returnMsg='スプラッシュマウンテンの近くに来たね！'
+                }
+
                 $userId = $event->getUserId();
 
-                $bot->pushMessage($userId, new LINEBot\MessageBuilder\TextMessageBuilder('push'));
+                $bot->pushMessage($userId, new LINEBot\MessageBuilder\TextMessageBuilder($returnMsg));
 
 //                $replyText = $event->getText();
 //                $logger->info('Reply text: ' . $replyText);
