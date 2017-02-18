@@ -33,7 +33,7 @@ class Route
     {
         $app->post('/callback', function (\Slim\Http\Request $req, \Slim\Http\Response $res) {
 
-            $returnMsg="Default"
+            $returnMsg='Default'
             /** @var \LINE\LINEBot $bot */
             $bot = $this->bot;
             /** @var \Monolog\Logger $logger */
@@ -67,17 +67,20 @@ class Route
                     $logger->info('Non text message has come');
                     continue;
                 }
-
-
-
                 $userId = $event->getUserId();
 
-                $bot->pushMessage($userId, new LINEBot\MessageBuilder\TextMessageBuilder($returnMsg));
+                //$bot->pushMessage($userId, new LINEBot\MessageBuilder\TextMessageBuilder('push'));
+                //$replyText = $event->getText();
 
-//                $replyText = $event->getText();
-//                $logger->info('Reply text: ' . $replyText);
-//                $resp = $bot->replyText($event->getReplyToken(), $replyText);
-//                $logger->info($resp->getHTTPStatus() . ': ' . $resp->getRawBody());
+                /*beaconイベントをキャッチ*/
+                if('beacon' == $event->type){
+                    $replyText='スプラッシュマウンテンの近くに来たね！'
+                }//if
+
+                $replyText = 'default'
+                $logger->info('Reply text: ' . $replyText);
+                $resp = $bot->replyText($event->getReplyToken(), $replyText);
+                $logger->info($resp->getHTTPStatus() . ': ' . $resp->getRawBody());
             }
 
             $res->write('OK');
