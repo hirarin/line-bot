@@ -68,10 +68,7 @@ class Route
                     continue;
                 }
 
-                /*beaconイベントをキャッチ*/
-                if('beacon' == $event->type){
-                    $returnMsg='スプラッシュマウンテンの近くに来たね！'
-                }
+
 
                 $userId = $event->getUserId();
 
