@@ -49,6 +49,8 @@ class Route
                 return $res->withStatus(400, "Invalid event request");
             }
             foreach ($events as $event) {
+
+              
                 if (!($event instanceof MessageEvent)) {
                     $logger->info('Non message event has come');
                     continue;
