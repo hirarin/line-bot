@@ -33,6 +33,8 @@ foreach ($json_object->events as $event) {
   //Beaconメッセージ
     }else if('beacon' == $event->type){
         api_post_request($event->replyToken, 'サラダエリアへようこそ！じゃんけんで勝ったら食べれるよ!');//post
+        api_post_request($event->replyToken, 'それじゃあ、始めるよ');//post
+        api_post_request($event->replyToken, 'じゃん・けん');//post
     }
 }
 
