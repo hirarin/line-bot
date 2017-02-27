@@ -32,7 +32,7 @@ foreach ($json_object->events as $event) {
         api_post_request($event->replyToken, 'チョキ！負けた！食べていいよ');//post
   //Beaconメッセージ
     }else if('beacon' == $event->type){
-        api_post_request($event->replyToken, 'サラダエリアへようこそ！じゃんけんで勝ったら食べれるよ！');//post
+        api_post_request($event->replyToken, 'サラダエリアへようこそ！じゃんけんで勝ったら食べれるよ!');//post
     }
 }
 
