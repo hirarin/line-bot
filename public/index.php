@@ -2,7 +2,7 @@
 /**
  * index.php
  *
- * @copyright   Copyright (c) 2016 sonicmoov Co.,Ltd.
+ * @copyright   Copyright (c) 2017 Syamusyeeru
  * @version     $Id$
  */
 /*
@@ -21,17 +21,22 @@ $app = new Slim\App($setting);
 $app->run();
 */
 
+//Json用の準備
 $json_string = file_get_contents('php://input');
 $json_object = json_decode($json_string);
 
+//受信イベントパラメータ
 foreach ($json_object->events as $event) {
+  //通常メッセージ
     if('message' == $event->type){
-        api_post_request($event->replyToken, $event->message->text);
+        api_post_request($event->replyToken, 'チョキ！負けた！食べていいよ');//post
+  //Beaconメッセージ
     }else if('beacon' == $event->type){
-        api_post_request($event->replyToken, 'スプラッシュマウンテンの近くに来たね！');
+        api_post_request($event->replyToken, 'サラダエリアへようこそ！じゃんけんで勝ったら食べれるよ！');//post
     }
 }
 
+//アプリにポストするメソッド（現在テキストメッセージのみ返す仕様）
 function api_post_request($token, $message) {
     $url = 'https://api.line.me/v2/bot/message/reply';
     $channel_access_token = 'TzygpCcTzSCDAuQqhP4Q5D/wNfweFepCkeIFeCfPCo/8lhH5oovCCYO3dcDwAaQFPofPsEdnEvNPn++0VUTcpxQgX7/kMxiazAWGc4+WIpEAARox2aRLwwm7855PJ6Unwg9I3pqXYbbZD9jnkV67OAdB04t89/1O/w1cDnyilFU=';
