@@ -5,21 +5,6 @@
  * @copyright   Copyright (c) 2017 Syamusyeeru
  * @version     $Id$
  */
-/*
-use LINE\LINEBot\EchoBot\Dependency;
-use LINE\LINEBot\EchoBot\Route;
-use LINE\LINEBot\EchoBot\Setting;
-
-require __DIR__ . '/../vendor/autoload.php';
-
-$setting = Setting::getSetting();
-$app = new Slim\App($setting);
-
-(new Dependency())->register($app);
-(new Route())->register($app);
-
-$app->run();
-*/
 
 //Json用の準備
 $json_string = file_get_contents('php://input');
