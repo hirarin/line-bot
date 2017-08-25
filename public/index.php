@@ -15,10 +15,10 @@ foreach ($json_object->events as $event) {
     if('message' == $event->type){
         //スロットの作成
         //キーワード抽出
-        if(strpos($event->getText(),'天気')===true){
+        if($event->getText()=='天気'){
             api_post_request($event->replyToken, '雨です。');//post
-        }else if(strpos($event->getText(),'記念')===true){
-            api_post_request($event->replyToken, '');//post
+        }else if($event->getText()=='記念'){
+            api_post_request($event->replyToken, 'aa');//post
         }
         api_post_request($event->replyToken, '');//post
   //Beaconメッセージ
