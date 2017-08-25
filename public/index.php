@@ -15,9 +15,9 @@ foreach ($json_object->events as $event) {
     if('message' == $event->type){
         //スロットの作成
         //キーワード抽出
-        if(strrpos($event->getText(),'天気')==true){
+        if(strpos($event->getText(),'天気')==true){
             api_post_request($event->replyToken, '雨です。');//post
-        }else if(strrpos($event->getText(),'記念')==true){
+        }else if(strpos($event->getText(),'記念')==true){
             api_post_request($event->replyToken, '');//post
         }
         api_post_request($event->replyToken, '');//post
