@@ -14,12 +14,24 @@ $json_object = json_decode($json_string);
 foreach ($json_object->events as $event) {
   //通常メッセージ
     if('message' == $event->type){
-        api_post_request($event->replyToken, 'チョキ！負けた！食べていいよ');//post
+
+
+        //スロットの作成
+        //キーワード抽出
+        if(strrpos($event->getText(),'旅行プラン')==true){
+            api_post_request($event->replyToken, 'どのような旅行にいたしましょうか？');//post
+        }else if(strrpos($event->getText(),'記念')==true){
+            api_post_request($event->replyToken, '');//post
+        }
+        api_post_request($event->replyToken, '');//post
+
+
+
+
   //Beaconメッセージ
     }else if('beacon' == $event->type){
-        api_post_request($event->replyToken, 'サラダエリアへようこそ！じゃんけんで勝ったら食べれるよ!');//post
-        api_post_request($event->replyToken, 'それじゃあ、始めるよ');//post
-        api_post_request($event->replyToken, 'じゃん・けん');//post
+        api_post_request($event->replyToken, 'ビーコンイベント');//post
+
     }
 }
 
