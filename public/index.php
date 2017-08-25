@@ -18,15 +18,12 @@ foreach ($json_object->events as $event) {
 
         //スロットの作成
         //キーワード抽出
-        if(strrpos($event->getText(),'旅行プラン')==true){
-            api_post_request($event->replyToken, 'どのような旅行にいたしましょうか？');//post
+        if(strrpos($event->getText(),'今日の天気')==true){
+            api_post_request($event->replyToken, '雨');//post
         }else if(strrpos($event->getText(),'記念')==true){
             api_post_request($event->replyToken, '');//post
         }
         api_post_request($event->replyToken, '');//post
-
-
-
 
   //Beaconメッセージ
     }else if('beacon' == $event->type){
